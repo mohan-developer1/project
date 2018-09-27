@@ -1,0 +1,31 @@
+<html>
+<style>
+#myProgress {
+  width: 50%;
+  background-color: black;
+}
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color:#0e0af3;
+}
+</style>
+<head>
+</head>
+<body>
+<input type="file" id="fileInput" accept=".csv" required />
+<input type="button" id="uploadid" value="UploadCSV"  />
+</br>
+<input type="text" id="myText" value="Table Name">
+<h2>File Uploading to Server...</h2>
+<div id="myProgress">
+  <div id="myBar"></div>
+</div>
+</br>
+<input type="button" id="create" value="CreateSchema"  />
+<h3 style="color:green;" id="myprog"></h3>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./upload.js"></script>
+<script src="./madecon.js"></script>
+</body>
+</html>

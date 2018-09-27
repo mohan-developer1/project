@@ -1,0 +1,67 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>CSV</title>
+  <style type="text/css">
+    table, td{
+    border: 1px solid black;
+  }
+  </style>
+</head>
+<body>
+<p>Select local CSV File:</p>
+<input id="csv" type="file" ><br>
+<button onclick="csvReading()">Upload</button>
+<div id="csv_table"></div> 
+</body>
+</html>
+<script type="text/javascript">
+  // function csvReadings(){
+  //   var fileInput = document.getElementById("csv");
+  //   if(fileInput.value.endsWith('.csv')){
+  //     var reader = new FileReader();  
+  //     reader.onload = function(e){
+  //       var tbody="<table>";
+  //       var trows = e.target.result.split('\n');
+  //       for (var i = 0; i < trows.length; i++) {
+  //           var tcolumn = trows[i].split(',');
+  //           if(trows[i].length > 0){  
+  //             tbody += "<tr>";
+  //             for (var i_c = 0; i_c < (tcolumn.length < 6 ? tcolumn.length : 6 ) ; i_c++) {
+  //                 tbody += "<td>"+tcolumn[i_c]+"</td>";
+  //             }
+  //             tbody += "</tr>" ;
+  //           }           
+  //       }
+  //       tbody += "</table>" ; 
+  //       document.getElementById('csv_table').innerHTML= tbody;
+  //       }
+  //     reader.readAsText(csv.files[0]);
+  //   }
+  // }
+  function csvReading(){
+    var fileInput = document.getElementById("csv");
+    if(fileInput.value.endsWith('.csv')){
+      var reader = new FileReader();  
+      reader.onload = function(e){
+        var tbody="<table>";
+        var trows = e.target.result.split('\n')
+	let rowss=trows.map(row=>row.split(','));
+	console.log(rowss);        
+        for (var i = 0; i < trows[0].length; i++)
+		{
+          		tbody+='<tr>';
+          	for(var j = 0; j < trows.length-1; j++ )
+		{
+            		tbody += "<td>" + rowss[j][i] + "</td>";
+          	}
+          	tbody+='</tr>';
+        	}           
+        	tbody += "</table>" ; 
+        //console.log(tbody);
+        document.getElementById('csv_table').innerHTML= tbody;
+        }
+      reader.readAsText(csv.files[0]);
+    }
+  }
+</script>
